@@ -17,7 +17,6 @@
         $edad = $params['edad'];
         $fecha = $params['fecha'];
         $email = $params['email'];
-        $sessionDate = $params['sessionDate'];
         $ciudad = $params['ciudad'];
         
 
@@ -27,10 +26,26 @@
 
     function getALL()
     {
-        $sql = " SELECT = FROM clientes ORDER BY fecha ASC ";
-        
+        $sql = "SELECT * FROM clientes ";
+        return mysqli_query($this->conn, $sql); 
     }
 
+
+        function getOne($id){
+        $sql = "SELECT * FROM clientes WHERE id = $id";
+        return mysqli_query($this->conn, $sql);
+      }
+    function update($params){
+      $nombre = $params['nombre'];
+      $edad = $params['edad'];
+      $fecha = $params['fecha'];
+      $email = $params['email'];
+      $ciudad = $params['ciudad'];
+        $id = $params['id'];
+  
+        $update = " UPDATE clientes SET nombre='$nombre', edad='$edad', fecha='$fecha', email='$email', ciudad='$ciudad' WHERE id = $id";
+        return mysqli_query($this->conn, $update);
+      }
     function remove($id)
     {
       $remove = "DELETE FROM clientes WHERE id = $id"; 
